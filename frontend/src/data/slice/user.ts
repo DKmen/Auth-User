@@ -34,15 +34,16 @@ export const fetchUser = createAsyncThunk('users/fetchUser', async () => {
 })
 
 export const createUser = createAsyncThunk('users/createUser', async ({ name, email, password }: { name: string, email: string, password: string }) => {
-    const user = (await axios.post(URL, {
+    const userData = (await axios.post(URL, {
         name,
         email,
         password
     }, {
         withCredentials: true
-    })).data.user as IUser
+    }));
+    setCookie("token", userData.data.token)
 
-    return user;
+    return userData.data.user as IUser;
 })
 
 export const loginUser = createAsyncThunk('users/loginUser', async ({ email, password }: { email: string, password: string }) => {
@@ -52,8 +53,7 @@ export const loginUser = createAsyncThunk('users/loginUser', async ({ email, pas
     }, {
         withCredentials: true
     }));
-
-    console.log(userData);
+    setCookie("token", userData.data.token)
 
     return userData.data.user as IUser;
 })
