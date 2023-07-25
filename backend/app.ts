@@ -12,7 +12,7 @@ dataSource.initialize().then((dataSource) => {
     const app = express();
 
     app.use(cors({
-        origin: "http://localhost:3000",
+        origin: "https://auth-user.vercel.app/login",
         credentials: true
     }));
     app.use(express.json());
