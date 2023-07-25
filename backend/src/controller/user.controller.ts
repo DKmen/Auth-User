@@ -45,7 +45,9 @@ export const loginUser = catchError(async (
 ) => {
     const user = await userService.loginUser(req.body.email, req.body.password);
 
-    res.cookie("token", user.token);
+    res.cookie("token", user.token,{
+        sameSite:'lax'
+    });
     res.status(200).json({
         error: false,
         user: user.user,
