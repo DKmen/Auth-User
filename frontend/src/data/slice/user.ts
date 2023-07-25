@@ -27,6 +27,7 @@ const initialState: User = {
 
 export const fetchUser = createAsyncThunk('users/fetchUser', async () => {
     const token = getCookie('token');
+    console.log(token)
     const user = (await axios.get(URL, {
         withCredentials: true,
         headers: {
