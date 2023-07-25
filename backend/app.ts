@@ -4,15 +4,13 @@ import * as cookieParser from "cookie-parser"
 import * as cors from "cors";
 import 'dotenv/config';
 
-
-
 import dataSource from "./src/db/connect"
 import userRouter from "./src/routes/user.route";
 import errorHandler from "./src/util/error.handler";
 
 dataSource.initialize().then((dataSource) => {
     const app = express();
-    
+
     app.use(cors({ credentials: true, origin: true }));
     app.use(express.json());
     app.use(bodyParser());
@@ -23,5 +21,5 @@ dataSource.initialize().then((dataSource) => {
 
     const port = parseInt(process.env.PORT) || 4000
     app.listen(port, () => console.log("application is running on " + port))
-})
+}).catch((err) => console.log(err))
 
