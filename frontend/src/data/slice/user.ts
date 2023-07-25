@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { setCookie } from "typescript-cookie";
 import { RootState } from '../store'
 import axios from 'axios'
 
