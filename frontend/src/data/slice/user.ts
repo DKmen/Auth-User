@@ -45,14 +45,16 @@ export const createUser = createAsyncThunk('users/createUser', async ({ name, em
 })
 
 export const loginUser = createAsyncThunk('users/loginUser', async ({ email, password }: { email: string, password: string }) => {
-    const user = (await axios.post(URL + "/login", {
+    const userData = (await axios.post(URL + "/login", {
         email,
         password
     }, {
         withCredentials: true
-    })).data.user as IUser
+    }));
 
-    return user;
+    console.log(userData);
+
+    return userData.data.user as IUser;
 })
 
 export const userSlice = createSlice({

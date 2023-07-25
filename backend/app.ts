@@ -12,7 +12,6 @@ dataSource.initialize().then((dataSource) => {
     const app = express();
 
     app.use(cors({
-        origin: "https://auth-user.vercel.app",
         credentials: true
     }));
     app.use(express.json());
