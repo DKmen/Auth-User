@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 import axios from 'axios'
 
-const URL = 'http://localhost:4000/api/v1/user/'
+const URL = 'https://auth-8z6z.onrender.com/api/v1/user'
 
 interface IUser {
     name: string,
@@ -45,7 +45,7 @@ export const createUser = createAsyncThunk('users/createUser', async ({ name, em
 })
 
 export const loginUser = createAsyncThunk('users/loginUser', async ({ email, password }: { email: string, password: string }) => {
-    const user = (await axios.post(URL + "login", {
+    const user = (await axios.post(URL + "/login", {
         email,
         password
     }, {

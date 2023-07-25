@@ -37,6 +37,7 @@ export default function LoginPage() {
     try {
       if (form.email !== "" && form.password !== "") {
         await dispatch(loginUser(form));
+        console.log("---")
         navigate("/");
       } else {
         openNotification(

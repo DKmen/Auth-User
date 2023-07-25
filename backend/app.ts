@@ -11,7 +11,11 @@ import errorHandler from "./src/util/error.handler";
 dataSource.initialize().then((dataSource) => {
     const app = express();
 
-    app.use(cors({ credentials: true, origin: true }));
+    app.use(cors({
+        credentials: true, origin: function (origin, callback) {
+            callback(null, origin);
+        },
+    }));
     app.use(express.json());
     app.use(bodyParser());
     app.use(cookieParser());
