@@ -11,10 +11,7 @@ import errorHandler from "./src/util/error.handler";
 dataSource.initialize().then((dataSource) => {
     const app = express();
 
-    app.use(cors({
-        origin: 'https://auth-user.vercel.app',
-        credentials: true
-    }));
+    app.use(cors());
     app.use(express.json());
     app.use(bodyParser());
     app.use(cookieParser());
