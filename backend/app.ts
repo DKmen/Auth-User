@@ -12,9 +12,8 @@ dataSource.initialize().then((dataSource) => {
     const app = express();
 
     app.use(cors({
-        credentials: true, origin: function (origin, callback) {
-            callback(null, origin);
-        },
+        credentials: true,
+        origin: ["http://localhost:3000/"]
     }));
     app.use(express.json());
     app.use(bodyParser());
