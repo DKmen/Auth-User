@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { setCookie } from "typescript-cookie";
+import { setCookie, getCookie } from "typescript-cookie";
 import { RootState } from '../store'
 import axios from 'axios'
 
-const URL = 'https://auth-8z6z.onrender.com/api/v1/user/'
+const URL = 'https://auth-8z6z.onrender.com/api/v1/user'
 
 interface IUser {
     name: string,
@@ -26,8 +26,12 @@ const initialState: User = {
 }
 
 export const fetchUser = createAsyncThunk('users/fetchUser', async () => {
+    const token = getCookie('token');
     const user = (await axios.get(URL, {
-        withCredentials: true
+        withCredentials: true,
+        headers: {
+            Cookie: `token = ${token}`
+        }
     })).data.user as IUser
 
     return user;
@@ -47,7 +51,7 @@ export const createUser = createAsyncThunk('users/createUser', async ({ name, em
 })
 
 export const loginUser = createAsyncThunk('users/loginUser', async ({ email, password }: { email: string, password: string }) => {
-    const userData = (await axios.post(URL + "login", {
+    const userData = (await axios.post(URL + "/login", {
         email,
         password
     }, {
